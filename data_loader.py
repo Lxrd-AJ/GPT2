@@ -22,7 +22,9 @@ class DataLoaderFineWeb:
         shards = sorted(shards)
         self.shards = [os.path.join(data_root, s) for s in shards]
         assert len(self.shards) > 0, f"No Shard found for split {split}"
+        self.reset()
         
+    def reset(self):
         self.current_shard = 0
         self.tokens = load_tokens(self.shards[self.current_shard])
         self.current_position = 0
